@@ -155,7 +155,7 @@ It is strongly recommended to:
 https://akizukidenshi.com/catalog/g/g112036/
 
 ロードセルアンプには **SparkFun Qwiic Scale – NAU7802** を採用しました。  
-**320 SPS の高サンプリング**が可能な点を重視しています。
+**320 SPS の高サンプリング**が可能な点を重視しています。  
 https://www.sparkfun.com/sparkfun-qwiic-scale-nau7802.html
 
 
