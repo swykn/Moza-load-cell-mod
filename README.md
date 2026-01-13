@@ -17,6 +17,7 @@ https://www.amazon.co.jp/dp/B0DHGTNMHH
 
 The load cell used is the **Akizuki Denshi 100 kg load cell (SC301A)**.  
 https://akizukidenshi.com/catalog/g/g112036/
+https://www.alibaba.com/suppliersubdomainalibabacom/product-detail/SC301A-S-Type-Load-Cell-Pull-60183532797.html
 
 The load cell amplifier is **SparkFun Qwiic Scale – NAU7802**.  
 It was selected to enable **high-speed sampling at 320 SPS**, which is not possible with the HX711.  
