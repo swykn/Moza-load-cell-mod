@@ -232,6 +232,7 @@ https://akizukidenshi.com/catalog/g/g112036/
 ロードセルアンプには **SparkFun Qwiic Scale – NAU7802** を採用しました。  
 HX711 では不可能な **320 SPS の高サンプリングレート**での取得を目的として選定しています。  
 https://www.sparkfun.com/sparkfun-qwiic-scale-nau7802.html
+https://www.switch-science.com/products/5539
 
 本構成では、
 - **5V 系（Arduino Pro Micro）**
@@ -419,7 +420,5 @@ Windows に接続すると、
 
 - ピンヘッダをはんだ付けする  
 - 信頼性の高い端子に交換する  
-
-ことを強く推奨します。
 
 ことを強く推奨します。
