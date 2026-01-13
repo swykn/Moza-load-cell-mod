@@ -101,7 +101,6 @@ Always double-check before powering on.
 | PCB (bottom) | [docs/pcb_bottom.jpg](docs/pcb_bottom.jpg) |
 | With 3D printed parts | [docs/with_3d_parts.jpg](docs/with_3d_parts.jpg) |
 | Installed in pedal | [docs/installed_in_pedal.jpg](docs/installed_in_pedal.jpg) |
-| Real environment (operating) | [docs/in_use.jpg](docs/in_use.jpg) |
 | Overall finished assembly | [docs/final_overview.jpg](docs/final_overview.jpg) |
 
 <details>
@@ -111,7 +110,6 @@ Always double-check before powering on.
 ![PCB bottom](docs/pcb_bottom.jpg)
 ![With 3D printed parts](docs/with_3d_parts.jpg)
 ![Installed in pedal](docs/installed_in_pedal.jpg)
-![In use](docs/in_use.jpg)
 ![Final overview](docs/final_overview.jpg)
 
 </details>
@@ -242,7 +240,6 @@ I²C 通信のみを使用します。
 | 基板（裏） | [docs/pcb_bottom.jpg](docs/pcb_bottom.jpg) |
 | 3Dプリント部品と組み合わせた状態 | [docs/with_3d_parts.jpg](docs/with_3d_parts.jpg) |
 | ペダルに組み込んだ状態 | [docs/installed_in_pedal.jpg](docs/installed_in_pedal.jpg) |
-| 実環境で動作している状態 | [docs/in_use.jpg](docs/in_use.jpg) |
 | 完成状態全体 | [docs/final_overview.jpg](docs/final_overview.jpg) |
 
 <details>
@@ -252,7 +249,6 @@ I²C 通信のみを使用します。
 ![基板 裏](docs/pcb_bottom.jpg)
 ![3D部品組合せ](docs/with_3d_parts.jpg)
 ![ペダル組込み](docs/installed_in_pedal.jpg)
-![実環境](docs/in_use.jpg)
 ![完成全体](docs/final_overview.jpg)
 
 </details>
