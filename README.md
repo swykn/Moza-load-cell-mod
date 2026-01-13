@@ -253,7 +253,7 @@ https://www.switch-science.com/products/5539
 https://www.amazon.co.jp/dp/B0BJJBG8C4
 
 **重要**
-- NAU7802 は **5V 非対応（3.3V 専用）**です  
+- NAU7802 は **5V 非対応（3.3V 専用）** です  
 - NAU7802 に 5V を直接接続しないでください  
 - GND は必ずすべて共通にしてください  
 
@@ -266,7 +266,7 @@ https://www.amazon.co.jp/dp/B0BJJBG8C4
 Amazon（日本）：  
 https://www.amazon.co.jp/dp/B086WWCJGQ
 
-同等仕様の **双方向 I²C レベル変換モジュール**であれば代替可能です。
+同等仕様の **双方向 I²C レベル変換モジュール** であれば代替可能です。
 
 ---
 
