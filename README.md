@@ -151,7 +151,7 @@ It is strongly recommended to:
 **Arduino Pro Micro 互換ボード**を  
 **USB HID ジョイスティックコントローラ**として使用します。
 
-ロードセルには **秋月電子 100kg ロードセル（SC301A）**を使用しています。  
+ロードセルには ** 秋月電子 100kg ロードセル（SC301A）** を使用しています。  
 https://akizukidenshi.com/catalog/g/g112036/
 
 ロードセルアンプには **SparkFun Qwiic Scale – NAU7802** を採用しました。  
