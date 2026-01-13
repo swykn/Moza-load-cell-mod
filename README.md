@@ -16,7 +16,7 @@ Pro Micro compatible board used in this project:
 https://www.amazon.co.jp/dp/B0DHGTNMHH
 
 The load cell used is the **Akizuki Denshi 100 kg load cell (SC301A)**.  
-https://akizukidenshi.com/catalog/g/g112036/
+https://akizukidenshi.com/catalog/g/g112036/  
 https://www.alibaba.com/suppliersubdomainalibabacom/product-detail/SC301A-S-Type-Load-Cell-Pull-60183532797.html  
 
 The load cell amplifier is **SparkFun Qwiic Scale – NAU7802**.  
