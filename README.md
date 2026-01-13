@@ -52,7 +52,7 @@ A **BSS138-based I²C bidirectional level shifter** is used.
 Amazon (Japan):  
 https://www.amazon.co.jp/dp/B086WWCJGQ
 
-Any equivalent BSS138-based bidirectional I²C level shifter can be used.
+Any equivalent bidirectional I²C level shifter can be used.
 
 ---
 
@@ -265,7 +265,7 @@ https://www.amazon.co.jp/dp/B0BJJBG8C4
 Amazon（日本）：  
 https://www.amazon.co.jp/dp/B086WWCJGQ
 
-同等仕様の **BSS138 ベース双方向 I²C レベル変換モジュール**であれば代替可能です。
+同等仕様の **双方向 I²C レベル変換モジュール**であれば代替可能です。
 
 ---
 
