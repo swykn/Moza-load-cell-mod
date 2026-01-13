@@ -12,6 +12,9 @@ The goal is to enable force-based braking input and achieve a more realistic dri
 An **Arduino Pro Micro compatible board** is used as a  
 **USB HID joystick controller**.
 
+Pro Micro compatible board used in this project:  
+https://www.amazon.co.jp/dp/B0DHGTNMHH
+
 The load cell used is the **Akizuki Denshi 100 kg load cell (SC301A)**.  
 https://akizukidenshi.com/catalog/g/g112036/
 
@@ -93,6 +96,76 @@ Always double-check before powering on.
 
 ---
 
+## Files
+
+### Firmware
+
+- **loadcell_brake.ino**  
+Arduino firmware for the load-cell brake pedal.  
+Compile and upload this sketch using the Arduino IDE.  
+After flashing, the board is recognized as a USB HID joystick.
+
+### 3D Printed Parts
+
+- **top.stl**  
+- **bottom.stl**  
+
+These parts clamp the load cell and allow it to be mounted inside the pedal assembly.
+
+### Design Source
+
+- **sr-p lite pedal loadcell mount v1.f3d**  
+
+Fusion 360 design file used to generate the STL files above.
+
+---
+
+## Required Libraries
+
+The following Arduino libraries are required to compile the firmware:
+
+- **Arduino Joystick Library**  
+  https://github.com/MHeironimus/ArduinoJoystickLibrary
+
+- **SparkFun Qwiic Scale NAU7802 Library**  
+  https://github.com/sparkfun/SparkFun_Qwiic_Scale_NAU7802_Arduino_Library
+
+Make sure both libraries are installed before compiling.
+
+---
+
+## Arduino IDE Setup (SparkFun AVR Boards)
+
+To compile and upload the firmware correctly, the **SparkFun AVR Boards** definition is used.
+
+1. Open **File > Preferences**  
+   Add the following URL to **Additional Boards Manager URLs**:
+https://raw.githubusercontent.com/sparkfun/Arduino_Boards/master/IDE_Board_Manager/package_sparkfun_index.json
+
+
+2. Open **Tools > Board > Boards Manager**, search for **sparkfun**,  
+and install **SparkFun AVR Boards by SparkFun Electronics**.
+
+3. Select the board:  
+**Tools > Board > SparkFun AVR Boards > SparkFun Pro Micro**
+
+4. Select the processor:  
+**Tools > Processor > ATmega32U4 (5V, 16 MHz)**
+
+---
+
+## Reset and Enter Bootloader
+
+If the board does not appear for upload or the upload fails:
+
+1. With the board connected to the PC, **short RST and GND twice quickly**  
+(on this board, **pin 3 and pin 4**).
+
+2. The bootloader will start and the board will reappear briefly.  
+**Upload the sketch immediately** while the bootloader is active.
+
+---
+
 ### Photos
 
 | Description | Link |
@@ -138,7 +211,6 @@ It is strongly recommended to:
 - Replace the terminals with more reliable connectors
 
 ---
-
 ## 日本語
 
 このプロジェクトは、**Moza CR-P Lite Pedals のブレーキペダルをロードセル方式に改造する**ものです。  
@@ -146,39 +218,42 @@ It is strongly recommended to:
 
 ---
 
-### 構成部品
+### ハードウェア構成
 
-**Arduino Pro Micro 互換ボード**を  
-**USB HID ジョイスティックコントローラ**として使用します。
+本プロジェクトでは、**Arduino Pro Micro 互換ボード**を  
+**USB HID ジョイスティックコントローラ**として使用しています。
+
+使用した Pro Micro 互換ボード：  
+https://www.amazon.co.jp/dp/B0DHGTNMHH
 
 ロードセルには **秋月電子 100kg ロードセル（SC301A）** を使用しています。  
 https://akizukidenshi.com/catalog/g/g112036/
 
 ロードセルアンプには **SparkFun Qwiic Scale – NAU7802** を採用しました。  
-**320 SPS の高サンプリング**が可能な点を重視しています。  
+HX711 では不可能な **320 SPS の高サンプリングレート**での取得を目的として選定しています。  
 https://www.sparkfun.com/sparkfun-qwiic-scale-nau7802.html
 
-
 本構成では、
-- Arduino 側は **5V**
-- NAU7802 側は **3.3V**
+- **5V 系（Arduino Pro Micro）**
+- **3.3V 系（NAU7802）**
 
-となるため、**電源変換**と**I²C レベル変換**が必要です。
+の 2 系統のロジック電圧を使用するため、  
+**電源変換（5V → 3.3V）**および **I²C レベル変換**が必要になります。
 
 ---
 
 ### 電源変換（5V → 3.3V）
 
-**5V → 3.3V 電源変換基板**を使用しています。  
+**5V → 3.3V の電源変換モジュール**を使用しています。  
 生成した **3.3V は NAU7802 とレベル変換モジュールの LV ピンの両方に供給**します。
 
-Amazon（日本）:  
+使用した電源変換モジュール：  
 https://www.amazon.co.jp/dp/B0BJJBG8C4
 
 **重要**
-- NAU7802 は **3.3V 専用**
-- 5V を直接接続しない
-- GND は必ず共通にする
+- NAU7802 は **5V 非対応（3.3V 専用）**です  
+- NAU7802 に 5V を直接接続しないでください  
+- GND は必ずすべて共通にしてください  
 
 ---
 
@@ -186,20 +261,19 @@ https://www.amazon.co.jp/dp/B0BJJBG8C4
 
 **BSS138 MOSFET を使用した I²C 双方向レベル変換モジュール**を使用しています。
 
-Amazon（日本）:  
+Amazon（日本）：  
 https://www.amazon.co.jp/dp/B086WWCJGQ
 
-同等仕様の BSS138 ベースモジュールで代替可能です。
+同等仕様の **BSS138 ベース双方向 I²C レベル変換モジュール**であれば代替可能です。
 
 ---
 
 ### 配線（I²C レベル変換）
 
-I²C 通信のみを使用します。  
-必要な信号は **SDA / SCL / VCC / GND** です。
+必要な信号は **SDA / SCL / VCC / GND** のみです。
 
-- HV 側：5V（Arduino）
-- LV 側：3.3V（電源基板）
+- HV 側：**5V（Arduino Pro Micro）**
+- LV 側：**3.3V（電源変換モジュール）**
 
 | Arduino Pro Micro (5V) | レベル変換（HV） | レベル変換（LV） | NAU7802 (3.3V) |
 |------------------------|------------------|------------------|----------------|
@@ -210,19 +284,20 @@ I²C 通信のみを使用します。
 
 ---
 
-### ⚠ 警告：HV / LV の逆接続
+### ⚠ 警告：HV / LV の逆接続について
 
 **HV と LV を逆に接続しないでください。**
 
-- **HV は 5V**
-- **LV は 3.3V**
+- **HV は必ず 5V**
+- **LV は必ず 3.3V**
 
 逆接続すると、
-- I²C 通信不能
-- NAU7802 破損
-- レベル変換基板破損
+- I²C 通信が成立しない  
+- NAU7802 が恒久的に破損する  
+- レベル変換モジュール自体が破損する  
 
-の可能性があります。必ず通電前に確認してください。
+可能性があります。  
+通電前に必ず配線を再確認してください。
 
 ---
 
@@ -231,6 +306,76 @@ I²C 通信のみを使用します。
 ![配線図](docs/wiring.svg)
 
 - SVG を直接開く: [docs/wiring.svg](docs/wiring.svg)
+
+---
+
+## ファイル構成
+
+### ファームウェア
+
+- **loadcell_brake.ino**  
+  ロードセル式ブレーキ用の Arduino ファームウェアです。  
+  Arduino IDE でコンパイルし、ボードに書き込んでください。  
+  書き込み後は USB HID ジョイスティックとして認識されます。
+
+### 3Dプリント部品
+
+- **top.stl**  
+- **bottom.stl**  
+
+ロードセルを挟み込み、ペダル内部に固定するための部品です。
+
+### 設計データ
+
+- **sr-p lite pedal loadcell mount v1.f3d**  
+
+上記 STL ファイルの元となった Fusion 360 の設計データです。
+
+---
+
+## 必要なライブラリ
+
+ファームウェアをコンパイルするには、以下の Arduino ライブラリが必要です。
+
+- **Arduino Joystick Library**  
+  https://github.com/MHeironimus/ArduinoJoystickLibrary
+
+- **SparkFun Qwiic Scale NAU7802 Library**  
+  https://github.com/sparkfun/SparkFun_Qwiic_Scale_NAU7802_Arduino_Library
+
+コンパイル前に、必ず両方のライブラリを Arduino IDE にインストールしてください。
+
+---
+
+## Arduino IDE 設定（SparkFun AVR Boards）
+
+本プロジェクトでは **SparkFun AVR Boards** のボード定義を使用します。
+
+1. **File > Preferences（ファイル > 環境設定）** を開き、  
+   **Additional Boards Manager URLs** に以下を追加します。  
+https://raw.githubusercontent.com/sparkfun/Arduino_Boards/master/IDE_Board_Manager/package_sparkfun_index.json
+
+2. **Tools > Board > Boards Manager** を開き、  
+**sparkfun** で検索し、  
+**SparkFun AVR Boards by SparkFun Electronics** をインストールします。
+
+3. ボードを選択します。  
+**Tools > Board > SparkFun AVR Boards > SparkFun Pro Micro**
+
+4. プロセッサを選択します。  
+**Tools > Processor > ATmega32U4 (5V, 16 MHz)**
+
+---
+
+## リセットしてブートローダーを起動
+
+書き込み時にボードが表示されない、またはアップロードに失敗する場合：
+
+1. PC に接続した状態で、**RST と GND を素早く 2 回ショート**させます  
+（このボードでは **3 番ピンと 4 番ピン**）。
+
+2. ブートローダーが起動し、短時間だけボードが認識されます。  
+**その間にスケッチを書き込んでください**。
 
 ---
 
@@ -259,19 +404,22 @@ I²C 通信のみを使用します。
 
 ### 使用方法
 
-Windows に接続すると  
+Windows に接続すると、  
 **1軸＋1ボタンの USB ジョイスティック**として認識されます。
 
 最大踏力のキャリブレーションは、  
-**ブレーキを約2秒間、強めに踏み込む**ことで自動的に行われます。
+**ブレーキを約 2 秒間、強めに踏み込む**ことで自動的に行われます。
 
 ---
 
 ### 注意事項
 
-**SparkFun Qwiic Scale – NAU7802 のスプリングターミナルは接触不良を起こしやすい**です。
+**SparkFun Qwiic Scale – NAU7802 のスプリングターミナルは接触不良を起こしやすい**です。  
+見た目上は接続できていても、実際には導通していないことがあります。
 
 - ピンヘッダをはんだ付けする  
 - 信頼性の高い端子に交換する  
+
+ことを強く推奨します。
 
 ことを強く推奨します。
